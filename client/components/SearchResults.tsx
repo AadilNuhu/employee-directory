@@ -1,7 +1,17 @@
 import employees from "@/data/mockUsers"
 import { Edit, Trash } from "lucide-react"
+type SearchResult = {
+    results: {
+        id:number,
+        name:string,
+        email:string,
+        role:string,
+        department:string,
+        phone:string
+    }[]
+}
 
-const SearchResults = () => {
+const SearchResults = ({results} : SearchResult) => {
     return (
         <div className="mt-4 w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
             <div className="grid grid-cols-[2fr_1.2fr_1fr_1fr] items-center gap-6 border-b border-gray-200 bg-gray-50 px-6 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
@@ -10,7 +20,7 @@ const SearchResults = () => {
                 <p>Phone</p>
                 <p className="text-right">Actions</p>
             </div>
-            {employees.map((employee) => (
+            {results.map((employee) => (
                 <div
                     key={employee.id}
                     className="grid grid-cols-[2fr_1.2fr_1fr_1fr] items-center gap-6 border-b border-gray-100 px-6 py-4 transition-colors last:border-b-0 hover:bg-gray-50"
