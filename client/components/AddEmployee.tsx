@@ -1,34 +1,32 @@
 "use client";
+import { useState } from "react";
+import { Roles, Departments } from "@/data/mockUsers";
 type employeeFormProps = {
   onClose: () => void
 }
 
 const AddEmployee = ({ onClose }: employeeFormProps) => {
-  const Roles = [
-    "All Departments",
-    "Engineering",
-    "Human Resources",
-    "Marketing",
-    "Design",
-    "Finance",
-    "Sales",
-    "Operations",
-    "Product",
-    "IT",
-  ]
+  
+  const [form, setForm] = useState({
+    name: "",
+    roles: "",
+    department: "",
+    email: "",
+    phone: "",
+  })
 
-  const Departments = [
-    "all",
-    "Frontend Developer",
-    "Backend Developer",
-    "HR Manager",
-    "UI/UX Designer",
-    "Sales Manager",
-    "Product Manager",
-    "DevOps Engineer",
-    "Marketing Specialist",
-    "Accountant",
-  ]
+  const handleChange =(e:React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target
+
+    setForm((pre) => ({
+      ...pre,
+      [name]:value
+    }))
+  }
+  const handleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault()
+    console.log(form)
+  }
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
@@ -46,9 +44,12 @@ const AddEmployee = ({ onClose }: employeeFormProps) => {
           </button>
         </div>
 
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <input
             type="text"
+            value={form.name}
+            name="name"
+            onChange={handleChange}
             placeholder="Full name"
             required
             className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-500"
@@ -56,6 +57,9 @@ const AddEmployee = ({ onClose }: employeeFormProps) => {
 
           <input
             type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
             placeholder="Email"
             required
             className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-500"
@@ -64,30 +68,31 @@ const AddEmployee = ({ onClose }: employeeFormProps) => {
           <div className="flex gap-4">
             <div className="w-full">
               <p className="text-sm ml-2 text-gray-500">Select Role : </p>
-              <select className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-500" name="roles" id="roles">
+              <select className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-500" name="roles" value={form.roles} onChange={handleChange} id="roles">
                 {Roles.map((role) => (
-                  <option value={role} className="px-4 py-3">{role}</option>
+                  <option key={role} value={role} className="px-4 py-3">{role}</option>
                 ))}
               </select>
             </div>
+
             <div className="w-full">
               <p className="text-sm ml-2 text-gray-500">Select Department : </p>
-              <select className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-500" name="roles" id="roles">
+              <select className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-500" name="department" onChange={handleChange} value={form.department} id="department">
                 {Departments.map((Dept) => (
-                  <option value={Dept} className="px-4 py-3">{Dept}</option>
+                  <option key={Dept} value={Dept} className="px-4 py-3">{Dept}</option>
                 ))}
               </select>
-
             </div>
-
-
 
           </div>
 
           <input
             type="text"
+            name="phone"
             placeholder="Phone (+233)"
             required
+            onChange={handleChange}
+            value={form.phone}
             className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-500"
           />
 
@@ -97,6 +102,7 @@ const AddEmployee = ({ onClose }: employeeFormProps) => {
           >
             Add Employee
           </button>
+
         </form>
       </div>
     </div>
