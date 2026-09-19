@@ -161,4 +161,38 @@ const employees = [
   },
 ];
 
+export const Roles = [
+    "All Departments",
+    "Engineering",
+    "Human Resources",
+    "Marketing",
+    "Design",
+    "Finance",
+    "Sales",
+    "Operations",
+    "Product",
+    "IT",
+  ]
+
+  export const Departments = [
+    "all",
+    "Frontend Developer",
+    "Backend Developer",
+    "HR Manager",
+    "UI/UX Designer",
+    "Sales Manager",
+    "Product Manager",
+    "DevOps Engineer",
+    "Marketing Specialist",
+    "Accountant",
+  ]
+
+  export const admin = {
+    name: "Admin",
+    email: "admin@gmail.com",
+    role: "Administrator",
+    status: "Active",
+    joined: "15th July, 2026"
+  }
+
 export default employees;
