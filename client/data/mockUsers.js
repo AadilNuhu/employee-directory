@@ -187,4 +187,12 @@ export const Roles = [
     "Accountant",
   ]
 
+  export const admin = {
+    name: "Admin",
+    email: "admin@gmail.com",
+    role: "Administrator",
+    status: "Active",
+    joined: "15th July, 2026"
+  }
+
 export default employees;
