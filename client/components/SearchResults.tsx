@@ -1,5 +1,7 @@
 import employees from "@/data/mockUsers"
+import { useState } from "react"
 import { Edit, Trash } from "lucide-react"
+import EditEmployee from "./EditEmployee"
 type SearchResult = {
     results: {
         id:number,
@@ -11,7 +13,10 @@ type SearchResult = {
     }[]
 }
 
+
 const SearchResults = ({results} : SearchResult) => {
+    const [show,setShow] = useState<Boolean>(false)
+    const [id,setId] = useState<number>(0)
     return (
         <div className="mt-4 w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
             <div className="grid grid-cols-[2fr_1.2fr_1fr_1fr] items-center gap-6 border-b border-gray-200 bg-gray-50 px-6 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
@@ -62,7 +67,9 @@ const SearchResults = ({results} : SearchResult) => {
 
                     {/* Actions */}
                     <div className="flex justify-end gap-2">
-                        <button className="rounded-lg px-3 cursor-pointer py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-100 hover:text-gray-900">
+                        <button className="rounded-lg px-3 cursor-pointer py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+                        onClick={() => {setShow(true); setId(employee.id)}}
+                        >
                             <Edit />
                         </button>
 
@@ -72,6 +79,10 @@ const SearchResults = ({results} : SearchResult) => {
                     </div>
                 </div>
             ))}
+
+            {show && (
+                <EditEmployee id={id} onClose={() => setShow(false)}  />
+            )}
         </div>
     )
 }
