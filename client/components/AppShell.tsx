@@ -1,15 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Nav from "@/components/Nav";
 import SideNav from "@/components/SideNav";
+import api from "@/lib/axios";
 
 type AppShellProps = {
   children: React.ReactNode;
 };
 
 export default function AppShell({ children }: AppShellProps) {
+  const pathname = usePathname();
+  const router = useRouter();
   const [showNav, setShowNav] = useState(true);
+  const isAuthPage = pathname === "/login" || pathname === "/signup";
+  const [isCheckingAuth, setIsCheckingAuth] = useState(!isAuthPage);
+
+  useEffect(() => {
+    if (isAuthPage) {
+      setIsCheckingAuth(false);
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.replace("/login");
+      return;
+    }
+
+    api.get("/auth/me")
+      .catch(() => {
+        localStorage.removeItem("token");
+        router.replace("/login");
+      })
+      .finally(() => setIsCheckingAuth(false));
+  }, [isAuthPage, router]);
+
+  if (isAuthPage) {
+    return <div className="w-full min-h-screen">{children}</div>;
+  }
+
+  if (isCheckingAuth) return null;
 
   return (
     <>
