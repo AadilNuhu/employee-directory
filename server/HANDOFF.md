@@ -1,9 +1,10 @@
-# Handoff: Auth is complete
+# Handoff: Backend auth and employee CRUD are in place
 
 ## Current status
-- Auth is working and tested.
-- Register, login, and protected `/auth/me` are all functional.
-- Database is SQLite and is created automatically in `server/db/app.db`.
+- Auth flow is working: register, login, and the protected `/auth/me` route are implemented.
+- Employee CRUD is implemented on the backend and protected with the auth middleware.
+- SQLite is initialized automatically in `server/db/app.db` when the server starts.
+- The API is mounted in `server/server.js` under `/auth` and `/employee`.
 
 ## Backend structure
 ```text
@@ -15,23 +16,26 @@ server/
 │   └── auth.js
 ├── routes/
 │   ├── auth.js
-│   └── (add employees.js here)
+│   └── employee.js
 ├── controllers/
 │   ├── authController.js
-│   └── (add employeeController.js here)
+│   └── employeeController.js
+├── enums/
+│   ├── departments.js
+│   └── roles.js
 ├── .env
-└── package.json
+├── package.json
+└── app.db
 ```
 
 ## Setup
 ```bash
 cd server
 npm install
-cp .env.example .env
 npm run dev
 ```
 
-`.env` example:
+A `.env` file is required in the `server/` folder. Example:
 ```env
 PORT=5000
 JWT_SECRET=your_secret_here
@@ -43,15 +47,26 @@ JWT_SECRET=your_secret_here
 | POST | `/auth/register` | No |
 | POST | `/auth/login` | No |
 | GET | `/auth/me` | Yes |
+| GET | `/employee` | Yes |
+| GET | `/employee/:id` | Yes |
+| POST | `/employee` | Yes |
+| PUT | `/employee/edit/:id` | Yes |
+| DELETE | `/employee/delete/:id` | Yes |
 
-Expected behavior:
-- duplicate email => 409
-- wrong password => 401
-- missing/invalid token => 401/403
+### Auth behavior
+- Duplicate email => `409`
+- Wrong password => `401`
+- Missing/invalid token => `401` / `403`
 
-## User table
+### Employee behavior
+- Name and email are required for creation.
+- Role and department are validated against the enum files in `server/enums/`.
+- Duplicate employee emails return `409`.
+- Missing employee records return `404`.
+
+## Database tables
 ```sql
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
   email TEXT UNIQUE NOT NULL,
@@ -61,32 +76,22 @@ CREATE TABLE users (
 );
 ```
 
-## Next step: Employee CRUD
-- Create an `employees` table in `server/db/database.js`.
-- Add `server/controllers/employeeController.js`.
-- Add `server/routes/employees.js`.
-- Protect those routes with the existing auth middleware.
-- Register the router in `server.js`:
-
-```js
-const employeeRoutes = require('./routes/employees');
-app.use('/employees', employeeRoutes);
-```
-
-## Suggested employee table
 ```sql
-CREATE TABLE employees (
+CREATE TABLE IF NOT EXISTS employee (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
-  email TEXT UNIQUE NOT NULL,
+  email TEXT UNIQUE,
   department TEXT,
   role TEXT,
-  salary REAL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  phone_number TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
 ## Notes
-- Run `npm run dev` from inside `server/`.
-- Keep `.env` out of git.
-- Do not build employee CRUD on the `auth` branch; create a separate feature branch.
+- The app boots SQLite automatically and creates both tables on server startup.
+- `server/routes/employee.js` applies the auth middleware to the whole router.
+- The front-end can now call the backend endpoints directly for employee listing, creation, update, and deletion.
+- Remaining work is mostly integration and UX polish on the client side, not backend API scaffolding.
+- Keep `.env` out of version control.
