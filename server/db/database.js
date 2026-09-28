@@ -19,7 +19,7 @@ db.serialize(() => {
   `);
 });
 
-db.serialize(()=>{
+db.serialize(() => {
 
   db.run(`
     CREATE TABLE IF NOT EXISTS employee(
