@@ -19,4 +19,21 @@ db.serialize(() => {
   `);
 });
 
+db.serialize(()=>{
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS employee(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE,
+    department TEXT,
+    role TEXT,
+    phone_number TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    `)
+}
+)
 module.exports = db;
+
