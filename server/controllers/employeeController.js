@@ -1,5 +1,5 @@
 const db = require('../db/database');
-const roles = require('../enums/roles')
+// const roles = require('../enums/roles')
 const departments = require('../enums/departments')
 const getALLEmployees = (req, res) => {
 
@@ -30,8 +30,8 @@ const createEmployee = (req, res) => {
     if (!email) {
         return res.status(400).json({ error: "Email is required!" })
     }
-    if (!roles.includes(role)) {
-        return res.status(400).json({ error: "Invalid role!" })
+    if (!role) {
+        return res.status(400).json({ error: "Role is required!" })
     }
     if (!departments.includes(department)) {
         return res.status(400).json({ error: 'Invalid department!' });
@@ -59,14 +59,14 @@ const updateEmployee = (req, res) => {
     if (department && !departments.includes(department)) {
         return res.status(400).json({ error: 'Invalid department!' });
     }
-    if (role && !roles.includes(role)) {
+    if (!role) {
         return res.status(400).json({ error: 'Invalid role!' });
     }
     db.get('SELECT * FROM employee WHERE id=?', [id], (err, existing) => {
         if (err) {
             return res.status(500).json({ error: 'Database error' });
         }
-        if (!existing) return res.status(404).json({ error: 'Employee not found!' });
+        // if (!existing) return res.status(404).json({ error: 'Employee not found!' });
 
 
         db.run(

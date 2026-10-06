@@ -40,7 +40,9 @@ export default function Home() {
         role={role}
         setRole={setRole}
       />
-      <SearchResults results={filteredResults} />
+      <SearchResults 
+      // results={filteredResults}
+       />
     </div>
   );
 }

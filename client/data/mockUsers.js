@@ -5,7 +5,7 @@ const employees = [
     role: "Frontend Developer",
     department: "Engineering",
     email: "kwame.mensah@example.com",
-    phone: "+233 24 123 4567",
+    phone_number: "+233 24 123 4567",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const employees = [
     role: "HR Manager",
     department: "Human Resources",
     email: "ama.owusu@example.com",
-    phone: "+233 20 234 5678",
+    phone_number: "+233 20 234 5678",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const employees = [
     role: "Backend Developer",
     department: "Engineering",
     email: "daniel.asare@example.com",
-    phone: "+233 55 345 6789",
+    phone_number: "+233 55 345 6789",
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const employees = [
     role: "Marketing Specialist",
     department: "Marketing",
     email: "abena.boateng@example.com",
-    phone: "+233 27 456 7890",
+    phone_number: "+233 27 456 7890",
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const employees = [
     role: "UI/UX Designer",
     department: "Design",
     email: "michael.addo@example.com",
-    phone: "+233 54 567 8901",
+    phone_number: "+233 54 567 8901",
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const employees = [
     role: "Accountant",
     department: "Finance",
     email: "efua.mensima@example.com",
-    phone: "+233 26 678 9012",
+    phone_number: "+233 26 678 9012",
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const employees = [
     role: "DevOps Engineer",
     department: "Engineering",
     email: "kofi.antwi@example.com",
-    phone: "+233 59 789 0123",
+    phone_number: "+233 59 789 0123",
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const employees = [
     role: "Product Manager",
     department: "Product",
     email: "nana.yeboah@example.com",
-    phone: "+233 50 890 1234",
+    phone_number: "+233 50 890 1234",
   },
   {
     id: 9,
@@ -69,7 +69,7 @@ const employees = [
     role: "Content Strategist",
     department: "Marketing",
     email: "adwoa.asante@example.com",
-    phone: "+233 23 901 2345",
+    phone_number: "+233 23 901 2345",
   },
   {
     id: 10,
@@ -77,7 +77,7 @@ const employees = [
     role: "IT Support Specialist",
     department: "IT",
     email: "yaw.ofori@example.com",
-    phone: "+233 25 012 3456",
+    phone_number: "+233 25 012 3456",
   },
   {
     id: 11,
@@ -85,80 +85,8 @@ const employees = [
     role: "Recruiter",
     department: "Human Resources",
     email: "akosua.frimpong@example.com",
-    phone: "+233 28 123 4567",
-  },
-  {
-    id: 12,
-    name: "Samuel Agyeman",
-    role: "Financial Analyst",
-    department: "Finance",
-    email: "samuel.agyeman@example.com",
-    phone: "+233 24 234 5678",
-  },
-  {
-    id: 13,
-    name: "Esi Darko",
-    role: "Product Designer",
-    department: "Design",
-    email: "esi.darko@example.com",
-    phone: "+233 20 345 6789",
-  },
-  {
-    id: 14,
-    name: "Kojo Appiah",
-    role: "QA Engineer",
-    department: "Engineering",
-    email: "kojo.appiah@example.com",
-    phone: "+233 55 456 7890",
-  },
-  {
-    id: 15,
-    name: "Mavis Arthur",
-    role: "Sales Manager",
-    department: "Sales",
-    email: "mavis.arthur@example.com",
-    phone: "+233 27 567 8901",
-  },
-  {
-    id: 16,
-    name: "Richmond Owusu",
-    role: "Sales Representative",
-    department: "Sales",
-    email: "richmond.owusu@example.com",
-    phone: "+233 54 678 9012",
-  },
-  {
-    id: 17,
-    name: "Priscilla Osei",
-    role: "Operations Manager",
-    department: "Operations",
-    email: "priscilla.osei@example.com",
-    phone: "+233 26 789 0123",
-  },
-  {
-    id: 18,
-    name: "Emmanuel Tetteh",
-    role: "Full Stack Developer",
-    department: "Engineering",
-    email: "emmanuel.tetteh@example.com",
-    phone: "+233 59 890 1234",
-  },
-  {
-    id: 19,
-    name: "Linda Baah",
-    role: "Customer Support Specialist",
-    department: "Customer Support",
-    email: "linda.baah@example.com",
-    phone: "+233 50 901 2345",
-  },
-  {
-    id: 20,
-    name: "Josephine Adjei",
-    role: "Project Coordinator",
-    department: "Operations",
-    email: "josephine.adjei@example.com",
-    phone: "+233 23 012 3456",
-  },
+    phone_number: "+233 28 123 4567",
+  }
 ];
 
 export const Roles = [

@@ -1,15 +1,14 @@
 const department =
-[
-     'Engineering',
-  'IT',
-  'Human Resources',
-  'Finance',
-  'Marketing',
-  'Sales',
-  'Operations',
-  'Customer Support',
-  'Legal',
-  'Administration'
-]
+  [
+    "Frontend Developer",
+    "Backend Developer",
+    "HR Manager",
+    "UI/UX Designer",
+    "Sales Manager",
+    "Product Manager",
+    "DevOps Engineer",
+    "Marketing Specialist",
+    "Accountant",
+  ]
 
-module.exports= department;
+module.exports = department;
